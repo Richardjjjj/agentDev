@@ -1,0 +1,15 @@
+2025-06-25 14:32:43,034 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-06-25 14:32:43,407 - AgentSystem - ERROR - 知识库加载失败: create() got an unexpected keyword argument 'api_base'
+2025-06-25 14:32:43,407 - AgentSystem - INFO - Agent系统初始化完成
+2025-06-25 14:32:43,407 - AgentSystem - INFO - 收到用户查询: 什么是AI Agent?
+2025-06-25 14:32:44,004 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-25 14:32:44,016 - AgentSystem - ERROR - 处理查询时出错: Error code: 401 - {'error': {'message': 'Incorrect API key provided: na. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-25 14:32:44,017 - AgentSystem - INFO - 收到用户查询: 北京现在的天气怎么样?
+2025-06-25 14:32:44,336 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-25 14:32:44,337 - AgentSystem - ERROR - 处理查询时出错: Error code: 401 - {'error': {'message': 'Incorrect API key provided: na. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-25 14:32:44,338 - AgentSystem - INFO - 收到用户查询: 计算25乘以16
+2025-06-25 14:32:44,717 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-25 14:32:44,718 - AgentSystem - ERROR - 处理查询时出错: Error code: 401 - {'error': {'message': 'Incorrect API key provided: na. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-06-25 14:32:44,719 - AgentSystem - INFO - 收到用户查询: 现在几点了?
+2025-06-25 14:32:45,060 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-06-25 14:32:45,062 - AgentSystem - ERROR - 处理查询时出错: Error code: 401 - {'error': {'message': 'Incorrect API key provided: na. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}

@@ -1,0 +1,11 @@
+2025-06-25 14:31:50,134 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-06-25 14:31:50,515 - AgentSystem - ERROR - 知识库加载失败: create() got an unexpected keyword argument 'api_base'
+2025-06-25 14:31:50,516 - AgentSystem - INFO - Agent系统初始化完成
+2025-06-25 14:31:50,516 - AgentSystem - INFO - 收到用户查询: 什么是AI Agent?
+2025-06-25 14:31:50,520 - AgentSystem - ERROR - 处理查询时出错: create() got an unexpected keyword argument 'api_base'
+2025-06-25 14:31:50,520 - AgentSystem - INFO - 收到用户查询: 北京现在的天气怎么样?
+2025-06-25 14:31:50,521 - AgentSystem - ERROR - 处理查询时出错: create() got an unexpected keyword argument 'api_base'
+2025-06-25 14:31:50,521 - AgentSystem - INFO - 收到用户查询: 计算25乘以16
+2025-06-25 14:31:50,521 - AgentSystem - ERROR - 处理查询时出错: create() got an unexpected keyword argument 'api_base'
+2025-06-25 14:31:50,521 - AgentSystem - INFO - 收到用户查询: 现在几点了?
+2025-06-25 14:31:50,521 - AgentSystem - ERROR - 处理查询时出错: create() got an unexpected keyword argument 'api_base'

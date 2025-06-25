@@ -1,0 +1,21 @@
+2025-06-25 14:33:44,064 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-06-25 14:33:44,442 - AgentSystem - ERROR - 知识库加载失败: create() got an unexpected keyword argument 'api_base'
+2025-06-25 14:33:44,442 - AgentSystem - INFO - Agent系统初始化完成
+2025-06-25 14:33:44,442 - AgentSystem - INFO - 收到用户查询: 什么是AI Agent?
+2025-06-25 14:33:52,957 - httpx - INFO - HTTP Request: POST http://192.168.10.137:31002/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-25 14:33:52,990 - AgentSystem - INFO - 查询处理完成，耗时: 8.55秒
+2025-06-25 14:33:52,990 - AgentSystem - INFO - 收到用户查询: 北京现在的天气怎么样?
+2025-06-25 14:33:53,410 - httpx - INFO - HTTP Request: POST http://192.168.10.137:31002/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-25 14:33:53,412 - AgentSystem - INFO - 使用工具: weather, 参数: 北京
+2025-06-25 14:33:53,412 - AgentSystem - INFO - 查询天气: 北京
+2025-06-25 14:33:53,413 - AgentSystem - INFO - 查询处理完成，耗时: 0.42秒
+2025-06-25 14:33:53,413 - AgentSystem - INFO - 收到用户查询: 计算25乘以16
+2025-06-25 14:33:54,112 - httpx - INFO - HTTP Request: POST http://192.168.10.137:31002/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-25 14:33:54,114 - AgentSystem - INFO - 使用工具: calculator, 参数: 25*16
+2025-06-25 14:33:54,114 - AgentSystem - INFO - 计算: 25*16
+2025-06-25 14:33:54,115 - AgentSystem - INFO - 查询处理完成，耗时: 0.70秒
+2025-06-25 14:33:54,115 - AgentSystem - INFO - 收到用户查询: 现在几点了?
+2025-06-25 14:33:54,509 - httpx - INFO - HTTP Request: POST http://192.168.10.137:31002/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-25 14:33:54,512 - AgentSystem - INFO - 使用工具: time, 参数: 
+2025-06-25 14:33:54,512 - AgentSystem - INFO - 查询时间: 
+2025-06-25 14:33:54,512 - AgentSystem - INFO - 查询处理完成，耗时: 0.40秒

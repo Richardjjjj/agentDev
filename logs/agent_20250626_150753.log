@@ -1,0 +1,30 @@
+2025-06-26 15:07:54,291 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-06-26 15:07:54,978 - httpx - INFO - HTTP Request: POST http://192.168.10.137:8200/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-26 15:07:55,024 - AgentSystem - INFO - 已加载知识库: agent_knowledge.txt, 共1个文档块
+2025-06-26 15:07:55,024 - AgentSystem - INFO - Agent系统初始化完成
+2025-06-26 15:07:55,024 - AgentSystem - INFO - 收到用户查询: 什么是AI Agent?
+2025-06-26 15:07:55,028 - AgentSystem - INFO - 查询知识库: 什么是AI Agent?
+2025-06-26 15:07:55,256 - httpx - INFO - HTTP Request: POST http://192.168.10.137:8200/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-26 15:08:07,662 - httpx - INFO - HTTP Request: POST http://192.168.10.137:31002/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-26 15:08:07,689 - AgentSystem - INFO - 查询处理完成，耗时: 12.66秒
+2025-06-26 15:08:07,689 - AgentSystem - INFO - 收到用户查询: 武汉现在的天气怎么样?
+2025-06-26 15:08:07,690 - AgentSystem - INFO - 查询知识库: 武汉现在的天气怎么样?
+2025-06-26 15:08:07,881 - httpx - INFO - HTTP Request: POST http://192.168.10.137:8200/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-26 15:08:08,421 - httpx - INFO - HTTP Request: POST http://192.168.10.137:31002/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-26 15:08:08,423 - AgentSystem - INFO - 使用工具: weather, 参数: 武汉
+2025-06-26 15:08:08,424 - AgentSystem - INFO - 使用墨迹天气API查询天气: 武汉
+2025-06-26 15:08:08,618 - AgentSystem - INFO - 查询处理完成，耗时: 0.93秒
+2025-06-26 15:08:08,618 - AgentSystem - INFO - 收到用户查询: 计算25乘以16
+2025-06-26 15:08:08,619 - AgentSystem - INFO - 查询知识库: 计算25乘以16
+2025-06-26 15:08:08,822 - httpx - INFO - HTTP Request: POST http://192.168.10.137:8200/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-26 15:08:09,577 - httpx - INFO - HTTP Request: POST http://192.168.10.137:31002/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-26 15:08:09,579 - AgentSystem - INFO - 使用工具: calculator, 参数: 25*16
+2025-06-26 15:08:09,580 - AgentSystem - INFO - 计算: 25*16
+2025-06-26 15:08:09,580 - AgentSystem - INFO - 查询处理完成，耗时: 0.96秒
+2025-06-26 15:08:09,580 - AgentSystem - INFO - 收到用户查询: 现在几点了?
+2025-06-26 15:08:09,581 - AgentSystem - INFO - 查询知识库: 现在几点了?
+2025-06-26 15:08:09,779 - httpx - INFO - HTTP Request: POST http://192.168.10.137:8200/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-26 15:08:10,425 - httpx - INFO - HTTP Request: POST http://192.168.10.137:31002/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-26 15:08:10,428 - AgentSystem - INFO - 使用工具: time, 参数: 获取当前时间
+2025-06-26 15:08:10,428 - AgentSystem - INFO - 查询时间: 获取当前时间
+2025-06-26 15:08:10,428 - AgentSystem - INFO - 查询处理完成，耗时: 0.85秒

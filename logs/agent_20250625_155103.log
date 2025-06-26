@@ -1,0 +1,31 @@
+2025-06-25 15:51:04,453 - chromadb.telemetry.product.posthog - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-06-25 15:51:05,158 - httpx - INFO - HTTP Request: POST http://192.168.10.137:8200/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-25 15:51:05,205 - AgentSystem - INFO - 已加载知识库: agent_knowledge.txt, 共1个文档块
+2025-06-25 15:51:05,206 - AgentSystem - INFO - Agent系统初始化完成
+2025-06-25 15:51:05,206 - AgentSystem - INFO - 收到用户查询: 什么是AI Agent?
+2025-06-25 15:51:05,210 - AgentSystem - INFO - 查询知识库: 什么是AI Agent?
+2025-06-25 15:51:05,299 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=2, read=2, redirect=None, status=None)) after connection broken by 'SSLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:1147)'))': /batch/
+2025-06-25 15:51:05,439 - httpx - INFO - HTTP Request: POST http://192.168.10.137:8200/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-25 15:51:22,005 - httpx - INFO - HTTP Request: POST http://192.168.10.137:31002/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-25 15:51:22,032 - AgentSystem - INFO - 查询处理完成，耗时: 16.83秒
+2025-06-25 15:51:22,032 - AgentSystem - INFO - 收到用户查询: 北京现在的天气怎么样?
+2025-06-25 15:51:22,033 - AgentSystem - INFO - 查询知识库: 北京现在的天气怎么样?
+2025-06-25 15:51:22,224 - httpx - INFO - HTTP Request: POST http://192.168.10.137:8200/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-25 15:51:22,769 - httpx - INFO - HTTP Request: POST http://192.168.10.137:31002/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-25 15:51:22,771 - AgentSystem - INFO - 使用工具: weather, 参数: 北京
+2025-06-25 15:51:22,772 - AgentSystem - INFO - 查询天气: 北京
+2025-06-25 15:51:22,772 - AgentSystem - INFO - 查询处理完成，耗时: 0.74秒
+2025-06-25 15:51:22,772 - AgentSystem - INFO - 收到用户查询: 计算25乘以16
+2025-06-25 15:51:22,773 - AgentSystem - INFO - 查询知识库: 计算25乘以16
+2025-06-25 15:51:22,968 - httpx - INFO - HTTP Request: POST http://192.168.10.137:8200/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-25 15:51:23,729 - httpx - INFO - HTTP Request: POST http://192.168.10.137:31002/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-25 15:51:23,732 - AgentSystem - INFO - 使用工具: calculator, 参数: 25*16
+2025-06-25 15:51:23,732 - AgentSystem - INFO - 计算: 25*16
+2025-06-25 15:51:23,732 - AgentSystem - INFO - 查询处理完成，耗时: 0.96秒
+2025-06-25 15:51:23,733 - AgentSystem - INFO - 收到用户查询: 现在几点了?
+2025-06-25 15:51:23,734 - AgentSystem - INFO - 查询知识库: 现在几点了?
+2025-06-25 15:51:23,928 - httpx - INFO - HTTP Request: POST http://192.168.10.137:8200/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-25 15:51:24,413 - httpx - INFO - HTTP Request: POST http://192.168.10.137:31002/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-25 15:51:24,415 - AgentSystem - INFO - 使用工具: time, 参数: 
+2025-06-25 15:51:24,415 - AgentSystem - INFO - 查询时间: 
+2025-06-25 15:51:24,416 - AgentSystem - INFO - 查询处理完成，耗时: 0.68秒

@@ -94,18 +94,118 @@ class AgentSystem:
         except Exception as e:
             self.logger.error(f"知识库加载失败: {str(e)}")
     
-    # 工具实现
+    # 百度搜索API实现
     def search_web(self, query: str) -> str:
-        """模拟网络搜索"""
-        self.logger.info(f"执行搜索: {query}")
-        # 实际应用中应集成真实搜索API
-        return f"搜索结果: 关于{query}的信息..."
+        """使用百度搜索API查询网络信息"""
+        self.logger.info(f"使用百度API执行搜索: {query}")
+        
+        try:
+            # 百度搜索API需要申请，这里使用的是公开API
+            url = "https://www.baidu.com/sugrec"
+            params = {
+                "prod": "pc",
+                "wd": query,
+                "cb": "jQuery"
+            }
+            
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+            }
+            
+            response = requests.get(url, params=params, headers=headers, timeout=5)
+            
+            # 处理百度搜索建议API的响应
+            if response.status_code == 200:
+                # 提取JSON数据
+                content = response.text
+                json_str = content.strip("jQuery(").rstrip(");")
+                result_json = json.loads(json_str)
+                
+                # 提取搜索建议
+                suggestions = []
+                if "g" in result_json and isinstance(result_json["g"], list):
+                    for item in result_json["g"]:
+                        if "q" in item:
+                            suggestions.append(item["q"])
+                
+                if suggestions:
+                    return f"百度搜索结果: 关于'{query}'的信息:\n" + "\n".join([f"- {s}" for s in suggestions])
+                else:
+                    return f"百度搜索: 未找到关于'{query}'的建议信息"
+            else:
+                return f"百度搜索请求失败: 状态码 {response.status_code}"
+                
+        except Exception as e:
+            self.logger.error(f"百度搜索API调用出错: {str(e)}")
+            return f"百度搜索API调用出错: {str(e)}"
     
+    # 墨迹天气API实现
     def get_weather(self, location: str) -> str:
-        """获取天气信息"""
-        self.logger.info(f"查询天气: {location}")
-        # 实际应用中应集成天气API
-        return f"{location}天气: 晴朗，25°C"
+        """使用墨迹天气API获取天气信息"""
+        self.logger.info(f"使用墨迹天气API查询天气: {location}")
+        
+        try:
+            # 墨迹天气开放API (注：实际使用需要申请API密钥)
+            # 这里使用的是一个公开的天气API替代
+            url = "https://restapi.amap.com/v3/weather/weatherInfo?parameters"
+            
+            # 高德地图天气API参数
+            # 注意：实际使用时需要替换为您自己的API密钥
+            params = {
+                "key": "8074ed8ae34efb78133405c2dfd284ba",  # 替换为您的高德地图API密钥
+                "city": location,
+                "extensions": "base"
+            }
+            
+            # 如果没有高德地图API密钥，可以模拟响应
+            mock_response = False
+            
+            if mock_response:
+                # 模拟天气数据结构但使用真实城市名
+                weather_data = {
+                    "城市": location,
+                    "天气": "晴",
+                    "温度": "25°C",
+                    "湿度": "45%",
+                    "风向": "东南风",
+                    "风力": "3级",
+                    "更新时间": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                }
+                
+                # 格式化返回结果
+                weather_str = f"{location}天气:\n"
+                for key, value in weather_data.items():
+                    if key != "城市":  # 城市名已经在开头显示
+                        weather_str += f"- {key}: {value}\n"
+                
+                return weather_str.strip()
+            else:
+                # 实际API调用
+                response = requests.get(url, params=params, timeout=5)
+                
+                if response.status_code == 200:
+                    result = response.json()
+                    
+                    if result.get("status") == "1" and "lives" in result and result["lives"]:
+                        weather = result["lives"][0]
+                        
+                        weather_str = f"{weather.get('city', location)}天气:\n"
+                        weather_str += f"- 天气: {weather.get('weather', '未知')}\n"
+                        weather_str += f"- 温度: {weather.get('temperature', '未知')}°C\n"
+                        weather_str += f"- 湿度: {weather.get('humidity', '未知')}%\n"
+                        weather_str += f"- 风向: {weather.get('winddirection', '未知')}\n"
+                        weather_str += f"- 风力: {weather.get('windpower', '未知')}\n"
+                        weather_str += f"- 更新时间: {weather.get('reporttime', '未知')}"
+                        
+                        return weather_str
+                    else:
+                        return f"获取{location}天气信息失败: {result.get('info', '未知错误')}"
+                else:
+                    return f"天气API请求失败: 状态码 {response.status_code}"
+        
+        except Exception as e:
+            self.logger.error(f"天气API调用出错: {str(e)}")
+            return f"天气API调用出错: {str(e)}"
     
     def calculate(self, expression: str) -> str:
         """计算表达式"""
@@ -226,8 +326,9 @@ if __name__ == "__main__":
     
     # 模拟对话
     queries = [
-        "什么是AI Agent?",
-        "北京现在的天气怎么样?",
+        # "什么是AI Agent?",
+        "介绍一下北京象新力科技有限公司",
+        "武汉现在的天气怎么样?",
         "计算25乘以16",
         "现在几点了?"
     ]

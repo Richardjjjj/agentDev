@@ -15,7 +15,7 @@ from langchain.memory import ConversationBufferMemory
 from langchain_openai import ChatOpenAI
 
 class AgentSystem:
-    def __init__(self, api_key: str, api_base: str, model: str, knowledge_base_path: Optional[str] = None):
+    def __init__(self, api_key: str, api_base: str, model: str, knowledge_base_path: Optional[str] = None, persist_directory: Optional[str] = None):
         # 初始化配置
         os.environ["OPENAI_API_KEY"] = api_key
         os.environ["OPENAI_API_BASE"] = api_base
@@ -38,8 +38,11 @@ class AgentSystem:
         
         # 初始化知识库(如果提供)
         self.vector_db = None
+        self.persist_directory = persist_directory
         if knowledge_base_path:
             self.setup_knowledge_base(knowledge_base_path)
+        elif persist_directory and os.path.exists(persist_directory):
+            self.load_persisted_knowledge_base(persist_directory)
         
         self.logger.info("Agent系统初始化完成")
     
@@ -88,11 +91,72 @@ class AgentSystem:
                 api_key="na",
                 model="gpt-4"
             )
-            self.vector_db = Chroma.from_documents(chunks, embeddings)
+            
+            # 如果有持久化目录，使用它
+            if self.persist_directory:
+                self.vector_db = Chroma.from_documents(
+                    documents=chunks, 
+                    embedding=embeddings,
+                    persist_directory=self.persist_directory
+                )
+                self.vector_db.persist()
+            else:
+                self.vector_db = Chroma.from_documents(chunks, embeddings)
             
             self.logger.info(f"已加载知识库: {knowledge_base_path}, 共{len(chunks)}个文档块")
         except Exception as e:
             self.logger.error(f"知识库加载失败: {str(e)}")
+    
+    def load_persisted_knowledge_base(self, persist_directory: str):
+        """加载已持久化的知识库"""
+        try:
+            os.environ["OPENAI_API_BASE"] = "http://192.168.10.137:8200/v1"
+            embeddings = OpenAIEmbeddings(
+                api_key="na",
+                model="gpt-4"
+            )
+            self.vector_db = Chroma(
+                persist_directory=persist_directory,
+                embedding_function=embeddings
+            )
+            self.logger.info(f"已加载持久化知识库: {persist_directory}")
+        except Exception as e:
+            self.logger.error(f"持久化知识库加载失败: {str(e)}")
+    
+    def add_documents_to_knowledge_base(self, documents):
+        """向知识库添加文档"""
+        try:
+            # 分割文档
+            text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+            chunks = text_splitter.split_documents(documents)
+            
+            os.environ["OPENAI_API_BASE"] = "http://192.168.10.137:8200/v1"
+            # 如果知识库不存在，创建一个
+            if not self.vector_db:
+                embeddings = OpenAIEmbeddings(
+                    api_key="na",
+                    model="gpt-4"
+                )
+                if self.persist_directory:
+                    self.vector_db = Chroma.from_documents(
+                        documents=chunks, 
+                        embedding=embeddings,
+                        persist_directory=self.persist_directory
+                    )
+                    self.vector_db.persist()
+                else:
+                    self.vector_db = Chroma.from_documents(chunks, embeddings)
+            else:
+                # 向现有知识库添加文档
+                self.vector_db.add_documents(chunks)
+                if self.persist_directory:
+                    self.vector_db.persist()
+            
+            self.logger.info(f"向知识库添加了{len(chunks)}个文档块")
+            return len(chunks)
+        except Exception as e:
+            self.logger.error(f"向知识库添加文档失败: {str(e)}")
+            raise
     
     # 百度搜索API实现
     def search_web(self, query: str) -> str:
@@ -321,13 +385,13 @@ if __name__ == "__main__":
         api_key="NULL",
         api_base="http://192.168.10.137:31002/v1",
         model="gpt-3.5-turbo-16k",
-        knowledge_base_path="agent_knowledge.txt"
+        knowledge_base_path="/home/user01/software/001_test/agentDev/xxl.txt"
     )
     
     # 模拟对话
     queries = [
-        # "什么是AI Agent?",
-        "介绍一下北京象新力科技有限公司",
+        "最近有什么新闻头条?",
+        "郭沛华是谁？",
         "武汉现在的天气怎么样?",
         "计算25乘以16",
         "现在几点了?"

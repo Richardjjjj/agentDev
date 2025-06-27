@@ -151,6 +151,31 @@ def knowledge_status():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/api/knowledge/infos', methods=['GET'])
+def knowledge_files():
+    """Get information about files in the knowledge base"""
+    try:
+        files = []
+        if os.path.exists(app.config['UPLOAD_FOLDER']):
+            for filename in os.listdir(app.config['UPLOAD_FOLDER']):
+                file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                if os.path.isfile(file_path) and allowed_file(filename):
+                    file_info = {
+                        "filename": filename,
+                        "size": os.path.getsize(file_path),
+                        "upload_time": os.path.getctime(file_path),
+                        "type": filename.rsplit('.', 1)[1].lower()
+                    }
+                    files.append(file_info)
+        
+        return jsonify({
+            "success": True,
+            "files": files,
+            "count": len(files)
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == '__main__':
     # Load existing knowledge base if available
     try:
